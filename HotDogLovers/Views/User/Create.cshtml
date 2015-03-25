@@ -1,0 +1,63 @@
+﻿@model HotDogLovers.Models.UserViewModel
+
+@{
+    ViewBag.Title = "Create";
+}
+@Scripts.Render("~/Content/DogStyle")
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h1>Hot Dog Lover</h1>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.User.Name, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.User.Name, new { htmlAttributes = new { @class = "form-control required" } })
+                @Html.ValidationMessageFor(model => model.User.Name, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.User.Bio, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.User.Bio, new { htmlAttributes = new { @class = "form-control required" } })
+                @Html.ValidationMessageFor(model => model.User.Bio, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        @*<div class="form-group"> 
+           @Html.LabelFor(model => model.User.dog, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.LabelFor(m => m.User.Dog, new { })
+                @Html.DropDownListFor(m => m.User.Dog, new SelectList(Model.Dogs), new { @class = "text-danger" })
+            </div>
+        </div>-->*@
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div class="row">
+    <div class="col-md-3"><p><input type="text"></p></div>
+    <div class="col-md-3" id="container"></div>
+
+</div>
+
+<div class="row">
+    <div class="col-md-6"><p>Enter the url of your image</p></div>
+</div>
+
+    <div>
+        @Html.ActionLink("Back to List", "Index")
+    </div>
+
+    @section Scripts {
+        @Scripts.Render("~/bundles/jqueryval")
+    }
